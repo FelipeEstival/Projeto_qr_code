@@ -4,9 +4,10 @@ Aplicação web desenvolvida com Django para gerar QR Codes a partir de URLs. O 
 
 ---
 
-## Preview
+## Você pode acessar
 
-<img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/c3dbdd17-8210-4ec2-b0f4-cecd46e6b0e0" />
+Teste você mesmo a ferramenta
+https://felipeestival.pythonanywhere.com/qrcode/
 
 ---
 
