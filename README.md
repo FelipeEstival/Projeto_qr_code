@@ -1,58 +1,111 @@
-Projeto Gerador de QR Code
+# QR Code Generator
 
-Este projeto é uma aplicação web desenvolvida com Django que permite aos usuários gerar QR Codes a partir de URLs fornecidas. A interface é intuitiva e o processo de geração é rápido, oferecendo a opção de baixar o QR Code gerado.
+Aplicação web desenvolvida com Django para gerar QR Codes a partir de URLs. O sistema permite criar códigos QR de forma rápida e simples, com opção de visualização e download da imagem gerada.
 
-Funcionalidades
+---
 
-• Geração de QR Code: Converte qualquer URL em um QR Code visualmente escaneável.
-• Interface Amigável: Design limpo e responsivo para uma experiência de usuário agradável.
-• Download: Permite o download do QR Code gerado em formato PNG.
+## Preview
 
-Tecnologias Utilizadas
-O projeto foi construído utilizando as seguintes tecnologias:
+<img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/c3dbdd17-8210-4ec2-b0f4-cecd46e6b0e0" />
 
-Backend:
--Django: Framework web Python de alto nível para desenvolvimento rápido e design pragmático.
--Pillow: Biblioteca de processamento de imagens para Python, utilizada indiretamente pela biblioteca qrcode.
--qrcode: Biblioteca Python para gerar QR Codes.
+---
 
-Frontend:
--HTML5
--CSS3 (com um design moderno e responsivo)
--JavaScript (para interações assíncronas e exibição do QR Code)
+## Funcionalidades
 
-Como Rodar o Projeto Localmente:
+* Geração instantânea de QR Codes a partir de URLs
+* Visualização do QR Code diretamente na página
+* Download da imagem em formato PNG
+* Interface responsiva e intuitiva
+* Validação básica de entrada
 
-Certifique-se de ter o Python 3 e o pip instalados em sua máquina.
+---
 
-Rode localmente:
+## Tecnologias Utilizadas
+
+### Backend
+
+* Python
+* Django
+* qrcode
+* Pillow
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+
+---
+
+## Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/projeto-qrcode.git
+```
+
+Acesse a pasta do projeto:
+
+```bash
+cd projeto-qrcode
+```
+
+Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+Inicie o servidor:
+
+```bash
 python manage.py runserver
+```
 
+---
 
-Acesse a aplicação:
-Abra seu navegador e navegue para http://127.0.0.1:8000/ 
-(ou a porta indicada pelo Django).
+## Acesso
 
-Estrutura do Projeto
-Plain Text
+Após iniciar o servidor, abra:
 
+```text
+http://127.0.0.1:8000/qrcode
+```
+
+---
+
+## Estrutura do Projeto
+
+```text
 Projeto_qr_code/
+│
 ├── projeto_qrcode/
-│   ├── .vscode/                 # Configurações do VS Code
-│   ├── projeto_qrcode_django/   # Aplicação Django principal
-│   │   ├── __init__.py
-│   │   ├── asgi.py
-│   │   ├── settings.py          # Configurações do projeto Django
-│   │   ├── urls.py              # Definições de URL do projeto
-│   │   ├── views.py             # Lógica de geração do QR Code
-│   │   └── wsgi.py
-│   ├── templates/               # Diretório de templates HTML
+│   ├── projeto_qrcode_django/
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── ...
+│   │
+│   ├── templates/
 │   │   └── tarefas/
-│   │       └── index.html       # Frontend da aplicação
-│   └── manage.py                # Utilitário de linha de comando do Django
-└── README.md                    # Este arquivo
+│   │       └── index.html
+│   │
+│   └── manage.py
+│
+└── README.md
+```
 
+---
 
+## Contribuição
 
-Contribuições são bem-vindas! Sinta-se à vontade para apontar problemas e sugestões
-Autor Felipe Estival
+Contribuições são bem-vindas. Caso encontre algum problema ou tenha sugestões de melhoria, abra uma issue ou envie um pull request.
+
+---
+
+## Autor
+
+**Felipe Estival**
+
+Desenvolvido como projeto de estudos utilizando Django, Python e desenvolvimento web.
