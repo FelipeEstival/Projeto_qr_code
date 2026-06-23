@@ -3,62 +3,78 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerar QrCode</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #090d16 0%, #151f32 100%);
             color: #e2e8f0;
             min-height: 100vh;
-            margin: 0;
-            padding: 40px 20px;
-            box-sizing: border-box;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         h1 {
             text-align: center;
             color: #f8fafc;
-            font-size: 26px;
+            font-size: clamp(20px, 5vw, 32px);
             font-weight: 500;
-            margin-top: 40px;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             letter-spacing: -0.5px;
+            width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
         .caixa {
             background-color: #1a2436;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            max-width: 420px;
-            margin: 0 auto;
-            padding: 32px;
+            padding: clamp(20px, 5vw, 32px);
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: 100%;
         }
 
         h2 {
             color: #f8fafc;
-            font-size: 18px;
+            font-size: clamp(16px, 4vw, 18px);
             font-weight: 500;
             text-align: center;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: clamp(13px, 3vw, 14px);
             font-weight: 500;
             color: #94a3b8;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 12px 16px;
+            padding: clamp(10px, 3vw, 12px) clamp(12px, 3vw, 16px);
             margin-bottom: 20px;
             background-color: #0f172a;
             border: 1px solid #2e3f59;
             border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 15px;
+            font-size: clamp(14px, 3vw, 15px);
             color: #ffffff;
             transition: border-color 0.2s ease;
         }
@@ -69,47 +85,75 @@
         }
 
         button {
-            display: block;
-            margin: 0 auto;
-            width: auto;
-            padding: 14px;
+            padding: clamp(12px, 3vw, 14px) clamp(20px, 5vw, 24px);
             background-color: #2563eb;
             color: #ffffff;
             border: none;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: clamp(14px, 3vw, 15px);
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.2s ease;
+            width: 100%;
         }
 
         button:hover {
             background-color: #1d4ed8;
         }
 
+        button:active {
+            transform: scale(0.98);
+        }
+
         hr {
             border: 0;
             height: 1px;
             background: rgba(255, 255, 255, 0.08);
-            margin: 28px 0;
+            width: 100%;
         }
 
         #resultado {
             display: none;
             text-align: center;
+            background-color: #1a2436;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: clamp(20px, 5vw, 32px);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: 100%;
+        }
+
+        #resultado.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         #qr-img {
-            max-width: 180px;
+            max-width: 100%;
+            width: clamp(150px, 60vw, 280px);
             height: auto;
             border: 6px solid #ffffff;
             border-radius: 8px;
-            box-sizing: border-box;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            display: block;
         }
 
         #qr-download {
             text-decoration: none;
+            display: block;
+            width: 100%;
         }
 
         #qr-download button {
@@ -120,32 +164,85 @@
         #qr-download button:hover {
             background-color: #047857;
         }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            h1 {
+                margin-bottom: 24px;
+            }
+
+            .container {
+                gap: 16px;
+            }
+
+            .caixa {
+                padding: 16px;
+            }
+
+            input[type="text"] {
+                margin-bottom: 16px;
+            }
+
+            #resultado {
+                padding: 16px;
+            }
+        }
+
+        /* Responsividade para tablets */
+        @media (min-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .container {
+                gap: 32px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            body {
+                padding: 60px 20px;
+            }
+
+            h1 {
+                margin-bottom: 48px;
+            }
+
+            .container {
+                gap: 40px;
+            }
+
+            .caixa {
+                padding: 40px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <h1>Gere seu QR CODE aqui</h1>
 
-    <div class="caixa">
-        <form id="qr-form" method="POST">
-            {% csrf_token %}
-            <label for="url_qrcode">Digite a URL:</label>
-            <input type="text" id="url_qrcode" name="url_qrcode" required>
-            <button type="submit">Gerar</button>
-        </form>
-    </div>
+    <div class="container">
+        <div class="caixa">
+            <form id="qr-form" method="POST">
+                {% csrf_token %}
+                <label for="url_qrcode">Digite a URL:</label>
+                <input type="text" id="url_qrcode" name="url_qrcode" required placeholder="https://exemplo.com">
+                <button type="submit">Gerar</button>
+            </form>
+        </div>
 
-    <hr>
-
-    <div id="resultado">
-        <h2>Seu QR Code foi gerado!</h2>
-        <img id="qr-img" src="" alt="QR Code Gerado">
-        <br><br>
-        <a id="qr-download" href="" download="meu_qrcode.png">
-            <button type="button">
-                Baixar QR Code
-            </button>
-        </a>
+        <div id="resultado">
+            <h2>Seu QR Code foi gerado!</h2>
+            <img id="qr-img" src="" alt="QR Code Gerado">
+            <a id="qr-download" href="" download="meu_qrcode.png">
+                <button type="button">Baixar QR Code</button>
+            </a>
+        </div>
     </div>
 
     <script>
@@ -169,8 +266,13 @@
                         document.getElementById('qr-img').src = srcData;
                         document.getElementById('qr-download').href = srcData;
 
-                        document.getElementById('resultado').style.display = 'block';
+                        const resultDiv = document.getElementById('resultado');
+                        resultDiv.classList.add('show');
                     }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao gerar QR Code. Tente novamente.');
                 });
         });
     </script>
